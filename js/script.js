@@ -7,10 +7,10 @@ const columns = [
 ];
 
 const members = [
-  { id: "maya", name: "Maya Chen", initials: "MC", role: "Product designer", color: "#c46572" },
-  { id: "alex", name: "Alex Morgan", initials: "AM", role: "Frontend engineer", color: "#527bbf" },
-  { id: "sami", name: "Sami Patel", initials: "SP", role: "Product manager", color: "#9669b8" },
-  { id: "jordan", name: "Jordan Lee", initials: "JL", role: "QA engineer", color: "#d48743" }
+  { id: "rahul", name: "Rahul Sharma", initials: "RS", role: "Product Designer", color: "#c46572" },
+  { id: "priya", name: "Priya Verma", initials: "PV", role: "Frontend Engineer", color: "#527bbf" },
+  { id: "arjun", name: "Arjun Singh", initials: "AS", role: "Product Manager", color: "#9669b8" },
+  { id: "neha", name: "Neha Gupta", initials: "NG", role: "QA Engineer", color: "#d48743" }
 ];
 
 export const dayOffset = (days) => {
@@ -21,20 +21,107 @@ export const dayOffset = (days) => {
 };
 
 const starterTasks = [
-  { id: "task-1", columnId: "backlog", title: "Explore onboarding flows", description: "Map the first-run journey and collect examples from comparable products.", assignee: "maya", dueDate: dayOffset(9), priority: "Low" },
-  { id: "task-2", columnId: "backlog", title: "Audit existing content", description: "Identify pages that should be retained, rewritten, or removed.", assignee: "sami", dueDate: dayOffset(5), priority: "Medium" },
-  { id: "task-3", columnId: "todo", title: "Homepage information architecture", description: "Create the primary navigation and page hierarchy for the new site.", assignee: "maya", dueDate: dayOffset(2), priority: "High" },
-  { id: "task-4", columnId: "todo", title: "Set up component tokens", description: "Define reusable spacing, type, color, and elevation tokens.", assignee: "alex", dueDate: dayOffset(7), priority: "Medium" },
-  { id: "task-5", columnId: "progress", title: "Build responsive navigation", description: "Implement the desktop and mobile navigation patterns.", assignee: "alex", dueDate: dayOffset(1), priority: "High" },
-  { id: "task-6", columnId: "progress", title: "Write accessibility test plan", description: "Document keyboard and screen reader checks for the release.", assignee: "jordan", dueDate: dayOffset(-1), priority: "High" },
-  { id: "task-7", columnId: "review", title: "Review visual direction", description: "Get stakeholder feedback on the approved visual exploration.", assignee: "sami", dueDate: dayOffset(3), priority: "Medium" },
-  { id: "task-8", columnId: "done", title: "Kickoff and requirements", description: "Align scope, success metrics, owners, and delivery dates.", assignee: "sami", dueDate: dayOffset(-4), priority: "Low" }
+  {
+    id: "task-1",
+    columnId: "backlog",
+    title: "Explore onboarding flows",
+    description: "Map the first-run journey and collect examples from comparable products.",
+    assignee: "rahul",
+    dueDate: dayOffset(9),
+    priority: "Low"
+  },
+  {
+    id: "task-2",
+    columnId: "backlog",
+    title: "Audit existing content",
+    description: "Identify pages that should be retained, rewritten, or removed.",
+    assignee: "arjun",
+    dueDate: dayOffset(5),
+    priority: "Medium"
+  },
+  {
+    id: "task-3",
+    columnId: "todo",
+    title: "Homepage information architecture",
+    description: "Create the primary navigation and page hierarchy for the new site.",
+    assignee: "rahul",
+    dueDate: dayOffset(2),
+    priority: "High"
+  },
+  {
+    id: "task-4",
+    columnId: "todo",
+    title: "Set up component tokens",
+    description: "Define reusable spacing, type, color, and elevation tokens.",
+    assignee: "priya",
+    dueDate: dayOffset(7),
+    priority: "Medium"
+  },
+  {
+    id: "task-5",
+    columnId: "progress",
+    title: "Build responsive navigation",
+    description: "Implement the desktop and mobile navigation patterns.",
+    assignee: "priya",
+    dueDate: dayOffset(1),
+    priority: "High"
+  },
+  {
+    id: "task-6",
+    columnId: "progress",
+    title: "Write accessibility test plan",
+    description: "Document keyboard and screen reader checks for the release.",
+    assignee: "neha",
+    dueDate: dayOffset(-1),
+    priority: "High"
+  },
+  {
+    id: "task-7",
+    columnId: "review",
+    title: "Review visual direction",
+    description: "Get stakeholder feedback on the approved visual exploration.",
+    assignee: "arjun",
+    dueDate: dayOffset(3),
+    priority: "Medium"
+  },
+  {
+    id: "task-8",
+    columnId: "done",
+    title: "Kickoff and requirements",
+    description: "Align scope, success metrics, owners, and delivery dates.",
+    assignee: "arjun",
+    dueDate: dayOffset(-4),
+    priority: "Low"
+  }
 ];
-
 const starterActivity = [
-  { id: "activity-1", initials: "AM", actor: "Alex Morgan", action: "moved", task: "Build responsive navigation", detail: "to In Progress", timestamp: Date.now() - 1000 * 60 * 12 },
-  { id: "activity-2", initials: "MC", actor: "Maya Chen", action: "created", task: "Homepage information architecture", detail: "in To Do", timestamp: Date.now() - 1000 * 60 * 46 },
-  { id: "activity-3", initials: "JL", actor: "Jordan Lee", action: "updated", task: "Write accessibility test plan", detail: "with a new deadline", timestamp: Date.now() - 1000 * 60 * 60 * 3 }
+  {
+    id: "activity-1",
+    initials: "PV",
+    actor: "Priya Verma",
+    action: "moved",
+    task: "Build responsive navigation",
+    detail: "to In Progress",
+    timestamp: Date.now() - 1000 * 60 * 12
+  },
+  {
+    id: "activity-2",
+    initials: "RS",
+    actor: "Rahul Sharma",
+    action: "created",
+    task: "Homepage information architecture",
+    detail: "in To Do",
+    timestamp: Date.now() - 1000 * 60 * 46
+  },
+  {
+    id: "activity-3",
+    initials: "NG",
+    actor: "Neha Gupta",
+    action: "updated",
+    task: "Write accessibility test plan",
+    detail: "with a new deadline",
+    timestamp: Date.now() - 1000 * 60 * 60 * 3
+  }
 ];
 
 const storageKey = "orbit-board-tasks";
