@@ -16,7 +16,6 @@ const columns = [
 ];
 
 const members = [
-  { id: "arpita", name: "Arpita", initials: "AA", role: "Senior Developer", color: "#e11d48" },
   { id: "rahul", name: "Rahul Sharma", initials: "RS", role: "Product Designer", color: "#c46572" },
   { id: "priya", name: "Priya Verma", initials: "PV", role: "Frontend Engineer", color: "#527bbf" },
   { id: "arjun", name: "Arjun Singh", initials: "AS", role: "Product Manager", color: "#9669b8" },
@@ -108,7 +107,22 @@ let tasks = [];
 function loadTasks() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    tasks = saved ? JSON.parse(saved) : starterTasks;
+    if (saved) {
+      tasks = JSON.parse(saved).map(task => {
+        if (task.id === "task-1") {
+          task.assignee = "Rahul Sharma";
+        } else if (task.id === "task-2") {
+          task.assignee = "Arjun Singh";
+        }
+        const exists = members.some(m => m.name === task.assignee || m.id === task.assignee);
+        if (!exists) {
+          task.assignee = members[0].name;
+        }
+        return task;
+      });
+    } else {
+      tasks = starterTasks;
+    }
   } catch (error) {
     console.error("Error loading tasks from Local Storage:", error);
     tasks = starterTasks;
@@ -340,8 +354,12 @@ function matchesFilters(task) {
   const query = elements.search ? elements.search.value.trim().toLowerCase() : "";
   const matchesText = !query || `${task.title} ${task.description}`.toLowerCase().includes(query);
   
-  const assigneeVal = elements.assigneeFilter ? elements.assigneeFilter.value : "all";
-  const matchesAssignee = assigneeVal === "all" || task.assignee === assigneeVal;
+  const assigneeVal = elements.assigneeFilter ? elements.assigneeFilter.value.trim().toLowerCase() : "all";
+  const taskAssignee = String(task.assignee || "").trim().toLowerCase();
+  const matchesAssignee = assigneeVal === "all" ||
+    taskAssignee === assigneeVal ||
+    taskAssignee.includes(assigneeVal) ||
+    assigneeVal.includes(taskAssignee);
   
   const priorityVal = elements.priorityFilter ? elements.priorityFilter.value : "all";
   const matchesPriority = priorityVal === "all" || task.priority === priorityVal;
@@ -657,7 +675,7 @@ function handleDeleteTask(id) {
 function populateDropdownOptions() {
   if (elements.assignee) {
     elements.assignee.innerHTML = members
-      .map(m => `<option value="${m.name}">${m.name} (${m.role})</option>`)
+      .map(m => `<option value="${m.id}">${m.name} (${m.role})</option>`)
       .join("");
   }
   
@@ -713,6 +731,7 @@ function attachEventHandlers() {
 // Boot module on load
 document.addEventListener("DOMContentLoaded", () => {
   loadTasks();
+  saveTasks();
   populateDropdownOptions();
   renderTasks();
   attachEventHandlers();

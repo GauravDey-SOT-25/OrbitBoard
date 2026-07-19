@@ -1,3 +1,7 @@
+import { matchesFilters as filterMatches, gatherFilterValues, clearFilters as resetFilterInputs } from "./filter.js";
+import { focusSearchField } from "./search.js";
+import "./responsive.js";
+
 const columns = [
   { id: "backlog", title: "Backlog", color: "#94a0b3" },
   { id: "todo", title: "To Do", color: "#507de7" },
@@ -161,7 +165,25 @@ const elements = {
 function loadState(key, fallback) {
   try {
     const saved = localStorage.getItem(key);
-    return saved ? JSON.parse(saved) : fallback;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (key === storageKey) {
+        return parsed.map(task => {
+          if (task.id === "task-1") {
+            task.assignee = "rahul";
+          } else if (task.id === "task-2") {
+            task.assignee = "arjun";
+          }
+          const exists = members.some(m => m.id === task.assignee);
+          if (!exists) {
+            task.assignee = members[0].id;
+          }
+          return task;
+        });
+      }
+      return parsed;
+    }
+    return fallback;
   } catch {
     return fallback;
   }
@@ -215,15 +237,6 @@ function relativeTime(timestamp) {
   return `${Math.round(hours / 24)}d ago`;
 }
 
-function matchesFilters(task) {
-  const query = elements.search.value.trim().toLowerCase();
-  const matchesText = !query || `${task.title} ${task.description}`.toLowerCase().includes(query);
-  const matchesAssignee = elements.assigneeFilter.value === "all" || task.assignee === elements.assigneeFilter.value;
-  const matchesPriority = elements.priorityFilter.value === "all" || task.priority === elements.priorityFilter.value;
-  const matchesDue = elements.dueFilter.value === "all" || deadlineState(task.dueDate) === elements.dueFilter.value;
-  return matchesText && matchesAssignee && matchesPriority && matchesDue;
-}
-
 function renderTeam() {
   elements.teamList.innerHTML = members.map((member) => `
     <div class="team-person">
@@ -234,7 +247,7 @@ function renderTeam() {
 }
 
 function renderBoard() {
-  const visibleTasks = tasks.filter(matchesFilters);
+  const visibleTasks = tasks.filter((task) => filterMatches(task, gatherFilterValues(elements)));
   elements.board.innerHTML = "";
 
   columns.forEach((column) => {
@@ -423,10 +436,7 @@ function addTask(event) {
 }
 
 function clearFilters() {
-  elements.search.value = "";
-  elements.assigneeFilter.value = "all";
-  elements.priorityFilter.value = "all";
-  elements.dueFilter.value = "all";
+  resetFilterInputs(elements);
   renderBoard();
 }
 
@@ -448,12 +458,13 @@ function attachEvents() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
       event.preventDefault();
-      elements.search.focus();
+      focusSearchField(elements);
     }
   });
 }
 
 populateSelects();
+saveState();
 renderTeam();
 renderBoard();
 renderActivity();
