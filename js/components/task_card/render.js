@@ -17,22 +17,85 @@ const columns = [
 
 const members = [
   { id: "arpita", name: "Arpita", initials: "AA", role: "Senior Developer", color: "#e11d48" },
-  { id: "maya", name: "Maya Chen", initials: "MC", role: "Product Designer", color: "#c46572" },
-  { id: "alex", name: "Alex Morgan", initials: "AM", role: "Frontend Engineer", color: "#527bbf" },
-  { id: "sami", name: "Sami Patel", initials: "SP", role: "Product Manager", color: "#9669b8" },
-  { id: "jordan", name: "Jordan Lee", initials: "JL", role: "QA Engineer", color: "#d48743" }
+  { id: "rahul", name: "Rahul Sharma", initials: "RS", role: "Product Designer", color: "#c46572" },
+  { id: "priya", name: "Priya Verma", initials: "PV", role: "Frontend Engineer", color: "#527bbf" },
+  { id: "arjun", name: "Arjun Singh", initials: "AS", role: "Product Manager", color: "#9669b8" },
+  { id: "neha", name: "Neha Gupta", initials: "NG", role: "QA Engineer", color: "#d48743" }
 ];
 
-
 const starterTasks = [
-  { id: "task-1", title: "Explore onboarding flows", description: "Map the first-run journey and collect examples.", assignee: "Maya Chen", dueDate: dayOffset(9), priority: "Low", status: "Backlog" },
-  { id: "task-2", title: "Audit existing content", description: "Identify pages that should be retained, rewritten, or removed.", assignee: "Sami Patel", dueDate: dayOffset(5), priority: "Medium", status: "Backlog" },
-  { id: "task-3", title: "Homepage information architecture", description: "Create the primary navigation and page hierarchy.", assignee: "Maya Chen", dueDate: dayOffset(2), priority: "High", status: "To Do" },
-  { id: "task-4", title: "Set up component tokens", description: "Define reusable spacing, type, color, and elevation tokens.", assignee: "Alex Morgan", dueDate: dayOffset(7), priority: "Medium", status: "To Do" },
-  { id: "task-5", title: "Build responsive navigation", description: "Implement the desktop and mobile navigation patterns.", assignee: "Alex Morgan", dueDate: dayOffset(1), priority: "High", status: "In Progress" },
-  { id: "task-6", title: "Write accessibility test plan", description: "Document keyboard and screen reader checks for the release.", assignee: "Jordan Lee", dueDate: dayOffset(-1), priority: "High", status: "In Progress" },
-  { id: "task-7", title: "Review visual direction", description: "Get stakeholder feedback on the approved visual exploration.", assignee: "Sami Patel", dueDate: dayOffset(3), priority: "Medium", status: "Review" },
-  { id: "task-8", title: "Kickoff and requirements", description: "Align scope, success metrics, owners, and delivery dates.", assignee: "Sami Patel", dueDate: dayOffset(-4), priority: "Low", status: "Done" }
+  {
+    id: "task-1",
+    title: "Explore onboarding flows",
+    description: "Map the first-run journey and collect examples.",
+    assignee: "Rahul Sharma",
+    dueDate: dayOffset(9),
+    priority: "Low",
+    status: "Backlog"
+  },
+  {
+    id: "task-2",
+    title: "Audit existing content",
+    description: "Identify pages that should be retained, rewritten, or removed.",
+    assignee: "Arjun Singh",
+    dueDate: dayOffset(5),
+    priority: "Medium",
+    status: "Backlog"
+  },
+  {
+    id: "task-3",
+    title: "Homepage information architecture",
+    description: "Create the primary navigation and page hierarchy.",
+    assignee: "Rahul Sharma",
+    dueDate: dayOffset(2),
+    priority: "High",
+    status: "To Do"
+  },
+  {
+    id: "task-4",
+    title: "Set up component tokens",
+    description: "Define reusable spacing, type, color, and elevation tokens.",
+    assignee: "Priya Verma",
+    dueDate: dayOffset(7),
+    priority: "Medium",
+    status: "To Do"
+  },
+  {
+    id: "task-5",
+    title: "Build responsive navigation",
+    description: "Implement the desktop and mobile navigation patterns.",
+    assignee: "Priya Verma",
+    dueDate: dayOffset(1),
+    priority: "High",
+    status: "In Progress"
+  },
+  {
+    id: "task-6",
+    title: "Write accessibility test plan",
+    description: "Document keyboard and screen reader checks for the release.",
+    assignee: "Neha Gupta",
+    dueDate: dayOffset(-1),
+    priority: "High",
+    status: "In Progress"
+  },
+  {
+    id: "task-7",
+    title: "Review visual direction",
+    description: "Get stakeholder feedback on the approved visual exploration.",
+    assignee: "Arjun Singh",
+    dueDate: dayOffset(3),
+    priority: "Medium",
+    status: "Review"
+  },
+  {
+    id: "task-8",
+    title: "Kickoff and requirements",
+    description: "Align scope, success metrics, owners, and delivery dates.",
+    assignee: "Arjun Singh",
+    dueDate: dayOffset(-4),
+    priority: "Low",
+    status: "Done"
+  }
 ];
 
 const STORAGE_KEY = "orbit-board-tasks-modular";
